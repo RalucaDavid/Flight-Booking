@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34601.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flight-Booking.Server", "Flight-Booking.Server\Flight-Booking.Server.csproj", "{A37FA9EF-682E-419B-875E-F282E77AFDCF}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "flight-booking.client", "flight-booking.client\flight-booking.client.esproj", "{98DC1939-CE13-45CE-9F0F-E2E71780AFA6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A37FA9EF-682E-419B-875E-F282E77AFDCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A37FA9EF-682E-419B-875E-F282E77AFDCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A37FA9EF-682E-419B-875E-F282E77AFDCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A37FA9EF-682E-419B-875E-F282E77AFDCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98DC1939-CE13-45CE-9F0F-E2E71780AFA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98DC1939-CE13-45CE-9F0F-E2E71780AFA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98DC1939-CE13-45CE-9F0F-E2E71780AFA6}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{98DC1939-CE13-45CE-9F0F-E2E71780AFA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98DC1939-CE13-45CE-9F0F-E2E71780AFA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98DC1939-CE13-45CE-9F0F-E2E71780AFA6}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B07B3808-6A27-4A06-8BBF-076F36C2190A}
+	EndGlobalSection
+EndGlobal
