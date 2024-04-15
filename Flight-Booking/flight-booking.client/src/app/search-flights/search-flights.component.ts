@@ -6,9 +6,42 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './search-flights.component.css'
 })
 export class SearchFlightsComponent{
-  searchResult: any = [
-    "American Airlines",
-    "British Airways",
-    "Lufthansa"
+
+  searchResult: FlightRm[] = [
+    {
+      airline: "American Airlines",
+      remainingNumberOfSeats: 500,
+      departure: { time: Date.now().toString(), place: "Los Angeles" },
+      arrival: { time: Date.now().toString(), place: "Istanbul" },
+      price: "350",
+    },
+    {
+      airline: "Tarom",
+      remainingNumberOfSeats: 50,
+      departure: { time: Date.now().toString(), place: "Berlin" },
+      arrival: { time: Date.now().toString(), place: "Bucharest" },
+      price: "450",
+    },
+    {
+      airline: "Wizz Air",
+      remainingNumberOfSeats: 500,
+      departure: { time: Date.now().toString(), place: "Paris" },
+      arrival: { time: Date.now().toString(), place: "Roma" },
+      price: "600",
+    }
   ]
+
+}
+
+export interface FlightRm {
+  airline: string;
+  arrival: TimePlaceRm;
+  departure: TimePlaceRm;
+  price: string;
+  remainingNumberOfSeats: number;
+}
+
+export interface TimePlaceRm{
+  place: string;
+  time: string;
 }
