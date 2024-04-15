@@ -24,9 +24,9 @@ export class SearchFlightsComponent{
     },
     {
       airline: "Wizz Air",
-      remainingNumberOfSeats: 500,
+      remainingNumberOfSeats: 367,
       departure: { time: Date.now().toString(), place: "Paris" },
-      arrival: { time: Date.now().toString(), place: "Roma" },
+      arrival: { time: Date.now().toString(), place: "Rome" },
       price: "600",
     }
   ]
