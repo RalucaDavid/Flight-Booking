@@ -16,7 +16,12 @@ export class SearchFlightsComponent {
   }
 
   search() {
-    this.flightService.flightGet({})
-      .subscribe(r => this.searchResult = r)
+    this.flightService.searchFlight({})
+      .subscribe(r => this.searchResult = r,
+       this.handleError)
+  }
+
+  private handleError(err: any) {
+    console.log(err)
   }
 }
