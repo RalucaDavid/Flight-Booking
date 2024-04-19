@@ -8,13 +8,15 @@ import { SearchFlightsComponent } from './search-flights/search-flights.componen
 import { RouterModule } from '@angular/router';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { BookFlightComponent } from './book-flight/book-flight.component';
+import { RegisterPassengerComponent } from './register-passenger/register-passenger.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchFlightsComponent,
     NavMenuComponent,
-    BookFlightComponent
+    BookFlightComponent,
+    RegisterPassengerComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -23,6 +25,7 @@ import { BookFlightComponent } from './book-flight/book-flight.component';
       { path: '', component: SearchFlightsComponent, pathMatch: 'full' },
       { path: 'search-flights', component: SearchFlightsComponent },
       { path: 'book-flight/:flightId', component: BookFlightComponent },
+      { path: 'register-passanger', component: RegisterPassengerComponent },
     ])
   ],
   providers: [],
