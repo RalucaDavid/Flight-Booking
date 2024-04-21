@@ -1,5 +1,6 @@
 using Flight_Booking.Server.ReadModels;
 using Microsoft.AspNetCore.Mvc;
+using Flight_Booking.Server.Dtos;
 using System;
 
 namespace Flight_Booking.Server.Controllers
@@ -61,6 +62,7 @@ namespace Flight_Booking.Server.Controllers
                 new TimePlaceRm("Zagreb",DateTime.Now.AddHours(random.Next(4, 60))),
                     random.Next(1, 853))
         };
+        static private IList<BookDto> Bookings = new List<BookDto>();
 
         public FlightController(ILogger<FlightController> logger)
         {
@@ -86,6 +88,13 @@ namespace Flight_Booking.Server.Controllers
             if (flight == null)
                 return NotFound();
             return Ok(flight);
+        }
+
+        [HttpPost]
+        public void Book(BookDto dto) 
+        {
+            System.Diagnostics.Debug.WriteLine($"Booking a new flight {dto.FlightId}");
+            Bookings.Add(dto);
         }
     }
 }
