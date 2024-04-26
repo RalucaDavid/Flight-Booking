@@ -18,6 +18,8 @@ namespace Flight_Booking.Server.Data
         {
             modelBuilder.Entity<Passenger>().HasKey(p => p.Email);
 
+            modelBuilder.Entity<Flight>().Property(p => p.RemainingNumberOfSeats).IsConcurrencyToken();
+
             modelBuilder.Entity<Flight>().OwnsOne(f => f.Departure);
             modelBuilder.Entity<Flight>().OwnsOne(f => f.Arrival);
         }

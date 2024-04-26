@@ -5,6 +5,7 @@ using Flight_Booking.Server.Dtos;
 using System;
 using Flight_Booking.Server.Domain.Errors;
 using Flight_Booking.Server.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Flight_Booking.Server.Controllers
 {
@@ -76,7 +77,14 @@ namespace Flight_Booking.Server.Controllers
             var error = flight.MakeBooking(dto.PassengerEmail, dto.NumberOfSeats);
             if (error is OverbookError)
                 return Conflict(new {message="Not enough seats."});
-            _entities.SaveChanges();
+            try
+            {
+                _entities.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                return Conflict(new { message = "An error occured while booking. Please try again." });
+            }
             return CreatedAtAction(nameof(Find), new { id = dto.FlightId }, dto);
         }
     }
