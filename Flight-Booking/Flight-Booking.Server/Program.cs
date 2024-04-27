@@ -8,13 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add db context
 builder.Services.AddDbContext<Entities>(options =>
-options.UseSqlServer(
-    "Data Source=localhost,52916;" +
-    "Database=FlightBooking;"+
-    "User id=user;"+
-    "Password=1234!Secret;"+
-    "TrustServerCertificate=true;"
-    ));
+       options.UseSqlServer(builder.Configuration.GetConnectionString("FlightBooking")));
 
 // Add services to the container.
 
@@ -37,12 +31,12 @@ builder.Services.AddScoped<Entities>();
 var app = builder.Build();
 
 var entities = app.Services.CreateScope().ServiceProvider.GetRequiredService<Entities>();
-    
+
 entities.Database.EnsureCreated();
 
 var random = new Random();
 
-if(!entities.Flights.Any())
+if (!entities.Flights.Any())
 {
     Flight[] flightsToSeed = new Flight[]
 {
