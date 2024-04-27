@@ -2,13 +2,19 @@ using Microsoft.OpenApi.Models;
 using Flight_Booking.Server.Data;
 using Flight_Booking.Server.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add db context
 builder.Services.AddDbContext<Entities>(options =>
-options.UseInMemoryDatabase(databaseName: "Flights"), 
-ServiceLifetime.Singleton);
+options.UseSqlServer(
+    "Data Source=localhost,52916;" +
+    "Database=FlightBooking;"+
+    "User id=user;"+
+    "Password=1234!Secret;"+
+    "TrustServerCertificate=true;"
+    ));
 
 // Add services to the container.
 
@@ -26,14 +32,19 @@ builder.Services.AddSwaggerGen(c =>
     c.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["action"] + e.ActionDescriptor.RouteValues["controller"]}");
 });
 
-builder.Services.AddSingleton<Entities>();
+builder.Services.AddScoped<Entities>();
 
 var app = builder.Build();
 
 var entities = app.Services.CreateScope().ServiceProvider.GetRequiredService<Entities>();
+    
+entities.Database.EnsureCreated();
 
 var random = new Random();
-Flight[] flightsToSeed = new Flight[]
+
+if(!entities.Flights.Any())
+{
+    Flight[] flightsToSeed = new Flight[]
 {
     new (   Guid.NewGuid(),
                 "American Airlines",
@@ -84,9 +95,9 @@ Flight[] flightsToSeed = new Flight[]
                 new TimePlace("Zagreb",DateTime.Now.AddHours(random.Next(4, 60))),
                     random.Next(1, 853))
 };
-entities.Flights.AddRange(flightsToSeed);
-
-entities.SaveChanges();
+    entities.Flights.AddRange(flightsToSeed);
+    entities.SaveChanges();
+}
 
 app.UseCors(builder => builder
 .WithOrigins("*")
