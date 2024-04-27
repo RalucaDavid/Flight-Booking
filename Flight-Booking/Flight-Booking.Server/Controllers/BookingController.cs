@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Flight_Booking.Server.ReadModels;
 using Flight_Booking.Server.Data;
+using Flight_Booking.Server.Dtos;
+using Flight_Booking.Server.Domain.Errors;
 
 namespace Flight_Booking.Server.Controllers
 {
@@ -35,6 +37,25 @@ namespace Flight_Booking.Server.Controllers
                     email
                     )));
             return Ok(bookings);
+        }
+
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(500)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult Cancel(BookDto dto)
+        {
+            var flight = _entities.Flights.Find(dto.FlightId);
+            var error = flight?.CancelBooking(dto.PassengerEmail, dto.NumberOfSeats);
+            if(error == null)
+            {
+                _entities.SaveChanges();
+                return NoContent();
+            }
+            if (error is NotFoundError)
+                return NotFound();
+            throw new Exception($"The error of type: {error.GetType().Name} occured while canceling the booking made by {dto.PassengerEmail}");
         }
     }
 }
