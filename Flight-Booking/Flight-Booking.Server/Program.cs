@@ -17,6 +17,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
+    c.DescribeAllParametersInCamelCase();
+
     c.AddServer(new OpenApiServer
     {
         Description = "Development Server",

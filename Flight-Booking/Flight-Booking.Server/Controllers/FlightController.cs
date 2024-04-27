@@ -26,9 +26,24 @@ namespace Flight_Booking.Server.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
         [ProducesResponseType(typeof(IEnumerable<FlightRm>), 200)]
-        public IEnumerable<FlightRm> Search()
+        public IEnumerable<FlightRm> Search([FromQuery] FlightSearchParameters @params)
         {
-            var flightRmList = _entities.Flights.Select(flight => new FlightRm(
+            _logger.LogInformation("Searching for a flight for: {Destination}", @params.Destination);
+            IQueryable<Flight> flights = _entities.Flights;
+            if (!string.IsNullOrWhiteSpace(@params.Destination))
+                flights = flights.Where(f => f.Arrival.Place.Contains(@params.Destination));
+            if (!string.IsNullOrWhiteSpace(@params.Source))
+                flights = flights.Where(f => f.Departure.Place.Contains(@params.Source));
+            if (@params.FromDate != null)
+                flights = flights.Where(f => f.Departure.Time >= @params.FromDate.Value.Date);
+            if (@params.ToDate != null)
+                flights = flights.Where(f => f.Arrival.Time >= @params.ToDate.Value.Date.AddDays(1).AddTicks(-1));
+            if (@params.NumberOfPassengers != 0 && @params.NumberOfPassengers != null)
+                flights = flights.Where(f => f.RemainingNumberOfSeats >= @params.NumberOfPassengers);
+            else
+                flights = flights.Where(f => f.RemainingNumberOfSeats > 0);
+            var flightRmList = flights
+                .Select(flight => new FlightRm(
                 flight.Id,
                 flight.Airline,
                 flight.Price,
@@ -76,7 +91,7 @@ namespace Flight_Booking.Server.Controllers
                 return NotFound();
             var error = flight.MakeBooking(dto.PassengerEmail, dto.NumberOfSeats);
             if (error is OverbookError)
-                return Conflict(new {message="Not enough seats."});
+                return Conflict(new { message = "Not enough seats." });
             try
             {
                 _entities.SaveChanges();
