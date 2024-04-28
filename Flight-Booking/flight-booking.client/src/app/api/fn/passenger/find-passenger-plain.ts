@@ -10,12 +10,14 @@ import { PassengerRm } from '../../models/passenger-rm';
 
 export interface FindPassenger$Plain$Params {
   email: string;
+  password: string;
 }
 
 export function findPassenger$Plain(http: HttpClient, rootUrl: string, params: FindPassenger$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<PassengerRm>> {
   const rb = new RequestBuilder(rootUrl, findPassenger$Plain.PATH, 'get');
   if (params) {
     rb.path('email', params.email, {});
+    rb.path('password', params.password, {});
   }
 
   return http.request(
@@ -28,4 +30,4 @@ export function findPassenger$Plain(http: HttpClient, rootUrl: string, params: F
   );
 }
 
-findPassenger$Plain.PATH = '/Passenger/{email}';
+findPassenger$Plain.PATH = '/Passenger/{email}/{password}';

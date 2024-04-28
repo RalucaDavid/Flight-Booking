@@ -49,7 +49,7 @@ export class PassengerService extends BaseService {
   }
 
   /** Path part for operation `findPassenger()` */
-  static readonly FindPassengerPath = '/Passenger/{email}';
+  static readonly FindPassengerPath = '/Passenger/{email}/{password}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.

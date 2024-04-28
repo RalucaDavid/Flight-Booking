@@ -14,5 +14,6 @@ export class AuthService {
 }
 
 interface User {
-  email:string
+  email: string
+  password: string
 }

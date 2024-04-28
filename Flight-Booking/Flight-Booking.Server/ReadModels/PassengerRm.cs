@@ -2,7 +2,8 @@
 {
     public record PassengerRm(
         string Email,
+        string Password,
         string FirstName,
         string LastName,
-        bool Gender);
+        string Gender);
 }
