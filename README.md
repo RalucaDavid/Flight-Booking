@@ -34,3 +34,9 @@ Flight Booking is web-based application for flight reservations, enabling users 
 </ul>
 
 # Photos
+![image](https://github.com/RalucaDavid/Flight-Booking/assets/117584603/45a56b5f-242e-457c-b9cf-36c9c70e9b66)
+![image](https://github.com/RalucaDavid/Flight-Booking/assets/117584603/21d645b6-7e92-42a9-b184-422929aadb7f)
+![image](https://github.com/RalucaDavid/Flight-Booking/assets/117584603/c5700d14-a922-4563-be96-5db16b07a57c)
+![image](https://github.com/RalucaDavid/Flight-Booking/assets/117584603/a9e357ac-5ba9-4918-bffa-131921b9409b)
+![image](https://github.com/RalucaDavid/Flight-Booking/assets/117584603/dcc2218f-4365-4e77-b49e-79b33ea22e2c)
+![image](https://github.com/RalucaDavid/Flight-Booking/assets/117584603/7de8244c-d975-4388-b2bf-d189be07c1ca)
