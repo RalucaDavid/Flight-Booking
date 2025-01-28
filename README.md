@@ -23,7 +23,7 @@ Flight Booking is web-based application for flight reservations, enabling users 
      <strong>Frontend:</strong> Angular, OpenAPI Angular, Node.js
    </li>
    <li>
-     <strong>Backend:</strong> C#, ASP.NET, Swagger
+     <strong>Backend:</strong> C#, ASP.NET Core, Swagger
    </li>
    <li>
      <strong>Database:</strong> SQL Server
